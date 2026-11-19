@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#100c12">
+  <meta name="description" content="MafiaNight — зіграй у мафію з друзями онлайн">
+  <title>MafiaNight — Гра в мафію</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <div class="background-glow"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">♠</span>
+      MAFIA<span>NIGHT</span>
+    </div>
+    <div class="online-label">
+      <span class="online-dot"></span> ONLINE GAME
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ГОЛОВНЕ МЕНЮ -->
+    <section id="homeScreen" class="screen">
+
+      <div class="hero">
+        <div class="hero-symbol">♠</div>
+        <div class="eyebrow">THE CITY NEVER SLEEPS</div>
+        <h1>MAFIA<span>NIGHT</span></h1>
+        <p>Довіра — це розкіш. Брехня — мистецтво.</p>
+      </div>
+
+      <div class="panel menu-panel">
+
+        <label for="playerName">ТВОЄ ІМ'Я</label>
+        <input
+          id="playerName"
+          type="text"
+          maxlength="20"
+          placeholder="Введи своє ім'я..."
+          autocomplete="nickname"
+        >
+
+        <button id="createBtn" class="primary-btn">
+          ♠ СТВОРИТИ КІМНАТУ
+        </button>
+
+        <div class="separator">АБО ПРИЄДНАТИСЯ ДО ГРИ</div>
+
+        <label for="roomCode">КОД КІМНАТИ</label>
+        <input
+          id="roomCode"
+          type="text"
+          inputmode="numeric"
+          maxlength="6"
+          placeholder="000000"
+        >
+
+        <button id="joinBtn" class="secondary-btn">
+          ПРИЄДНАТИСЯ
+        </button>
+
+      </div>
+
+      <div class="rules">
+        <span>♟ 3–10 ГРАВЦІВ</span>
+        <span>🌙 НІЧНІ МІСІЇ</span>
+        <span>♠ ТАЄМНІ РОЛІ</span>
+      </div>
+
+    </section>
+
+    <!-- ІГРОВА КІМНАТА -->
+    <section id="roomScreen" class="screen hidden">
+
+      <div class="room-heading">
+        <h2>ІГРОВА <span>КІМНАТА</span></h2>
+        <button id="leaveBtn" class="small-btn">
+          Вийти
+        </button>
+      </div>
+
+      <!-- КОД КІМНАТИ -->
+      <div class="panel room-code-panel">
+        <div class="eyebrow">КОД ДЛЯ ДРУЗІВ</div>
+
+        <div class="room-code">
+          <span id="roomCodeText">000000</span>
+        </div>
+
+        <button id="copyCodeBtn" class="secondary-btn">
+          📋 СКОПІЮВАТИ КОД
+        </button>
+      </div>
+
+      <!-- СТАН ГРИ -->
+      <div class="panel phase-panel">
+
+        <div id="phaseIcon" class="phase-icon">♟</div>
+
+        <h2 id="phaseTitle">Очікування гравців</h2>
+
+        <p id="phaseMessage">
+          Очікуємо на друзів...
+        </p>
+
+        <div class="timer-container">
+          <span class="eyebrow">ЧАС ДО ЗАВЕРШЕННЯ</span>
+          <div id="timer" class="timer">00:00</div>
+        </div>
+
+      </div>
+
+      <!-- СПИСОК ГРАВЦІВ -->
+      <div class="panel players-panel">
+
+        <div class="section-heading">
+          <h3>ГРАВЦІ</h3>
+          <span id="playerCount">0/10</span>
+        </div>
+
+        <div id="playersList" class="players-list">
+        </div>
+
+        <button id="startBtn" class="primary-btn hidden">
+          ♠ ПОЧАТИ ГРУ
+        </button>
+
+      </div>
+
+      <!-- ПРИВАТНА РОЛЬ -->
+      <div id="roleCard" class="panel role-card hidden">
+
+        <div class="eyebrow">ТВОЯ ТАЄМНА РОЛЬ</div>
+
+        <div id="roleIcon" class="role-icon">♠</div>
+
+        <h2 id="roleName">МАФІЯ</h2>
+
+        <p id="roleDescription">
+          Твоя роль у грі.
+        </p>
+
+        <button id="hideRoleBtn" class="secondary-btn">
+          Сховати роль
+        </button>
+
+      </div>
+
+      <!-- ІГРОВІ ДІЇ -->
+      <div id="gameActions" class="panel actions-panel hidden">
+
+        <h3 id="actionTitle">Ігрова дія</h3>
+
+        <p id="actionDescription">
+          Обери гравця.
+        </p>
+
+        <div id="actionPlayers" class="action-players">
+        </div>
+
+      </div>
+
+      <!-- РЕЗУЛЬТАТ -->
+      <div id="resultBox" class="panel result-box hidden">
+      </div>
+
+      <!-- ЧАТ -->
+      <div class="panel chat-panel">
+
+        <h3>💬 ЧАТ КІМНАТИ</h3>
+
+        <div id="chatMessages" class="chat-messages">
+        </div>
+
+        <form id="chatForm" class="chat-form">
+
+          <input
+            id="chatInput"
+            type="text"
+            maxlength="300"
+            placeholder="Напиши повідомлення..."
+            autocomplete="off"
+          >
+
+          <button type="submit" class="primary-btn">
+            ➤
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- СПОВІЩЕННЯ -->
+  <div id="toast" class="toast"></div>
+
+  <footer class="footer">
+    MAFIANIGHT © 2026 · TRUST NO ONE
+  </footer>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+
+</body>
+</html>
