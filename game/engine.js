@@ -22,8 +22,8 @@ function shuffle(array) {
 function createPlayers(players) {
   const count = players.length;
 
-  if (count < 5 || count > 10) {
-    throw new Error("Потрібно від 5 до 10 гравців");
+  if (count < 3 || count > 10) {
+    throw new Error("Потрібно від 3 до 10 гравців");
   }
 
   const roles = [];
