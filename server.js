@@ -267,8 +267,8 @@ io.on("connection", socket => {
     if (!room || room.host !== socket.id) return;
     if (room.phase !== "lobby") return;
 
-    if (room.players.length < 5) {
-      return socket.emit("errorMessage", "Потрібно мінімум 5 гравців.");
+    if (room.players.length < 3) {
+      return socket.emit("errorMessage", "Потрібно мінімум 3 гравців.");
     }
 
     room.players = createPlayers(room.players);
